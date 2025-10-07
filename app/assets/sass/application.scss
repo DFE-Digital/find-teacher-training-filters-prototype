@@ -7,13 +7,6 @@
 
 /* GOV Search */
 
-.app-c-filter-panel__content {
-    background-color: #f3f2f1;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 15px;
-}
-
 .app-c-filter-section {
     border-bottom: 1px solid rgb(177, 180, 182);
 }
@@ -90,6 +83,124 @@
     user-select: none;
 }
 
+.app-c-filter-panel__button::before {
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    content: "";
+    display: inline-block;
+    height: 10px;
+    left: 5px;
+    position: relative;
+    vertical-align: middle;
+    width: 10px;
+    border-color: initial;
+    clip-path: unset;
+    -webkit-transform: translateY(-25%) rotate(135deg) scale(1);
+    -ms-transform: translateY(-25%) rotate(135deg) scale(1);
+    transform: translateY(-25%) rotate(135deg) scale(1);
+    margin: 0 10px 5px 0;
+}
+
+.app-c-filter-section[open] .app-c-filter-section__summary::before {
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    content: "";
+    display: inline-block;
+    height: 10px;
+    left: 5px;
+    position: relative;
+    vertical-align: middle;
+    width: 10px;
+    border-color: initial;
+    clip-path: unset;
+    -webkit-transform: translateY(-25%) rotate(135deg) scale(1);
+    -ms-transform: translateY(-25%) rotate(135deg) scale(1);
+    transform: translateY(-25%) rotate(135deg) scale(1);
+    -webkit-transform: translateY(30%) rotate(-45deg) scale(1);
+    -ms-transform: translateY(30%) rotate(-45deg) scale(1);
+    transform: translateY(30%) rotate(-45deg) scale(1);
+}
+
+.app-c-filter-panel__header {
+    display: flex;
+    flex-wrap: wrap;
+    place-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+}
+
+
+.app-c-filter-panel__button {
+    background-color: rgba(0, 0, 0, 0);
+    color: #1d70b8;
+    text-decoration: none;
+    border-style: none;
+    padding-left: 0;
+    cursor: pointer;
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 1.1875rem;
+    line-height: 1.3157894737;
+}
+
+.app-c-filter-panel__button[aria-expanded=true]::before {
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    content: "";
+    display: inline-block;
+    height: 10px;
+    left: 5px;
+    position: relative;
+    vertical-align: middle;
+    width: 10px;
+    border-color: initial;
+    clip-path: unset;
+    -webkit-transform: translateY(-25%) rotate(135deg) scale(1);
+    -ms-transform: translateY(-25%) rotate(135deg) scale(1);
+    transform: translateY(-25%) rotate(135deg) scale(1);
+    -webkit-transform: translateY(30%) rotate(-45deg) scale(1);
+    -ms-transform: translateY(30%) rotate(-45deg) scale(1);
+    transform: translateY(30%) rotate(-45deg) scale(1);
+}
+
 .app-filter-label {
     font-size: 19px;
+}
+
+.app-filter-heading {
+  font-size: 24px;
+  font-weight: 700;
+
+  @include govuk-media-query($from: tablet) {
+    font-size: 24px;
+    font-weight: 700;
+    }
+}
+
+.app-filter-heading--last {
+    margin-bottom: 5px;
+}
+
+.app-filter-panel-background {
+    background-color: #f3f2f1;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+}
+
+.app-results-indicator {
+    font-size: 16px;
+    text-align: right;
+}
+
+.app-filter-sub-category {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.app-white-line {
+    border-bottom: white solid 2px;
 }

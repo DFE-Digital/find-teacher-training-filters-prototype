@@ -5,14 +5,27 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-third">
+  <div class="govuk-grid-column-full">
 
-<div class="app-c-filter-panel__content" id="filter-panel-cae81ba6" role="region" aria-labelledby="filter-button-cae81ba6">
+    <div class="app-c-filter-panel__header">
+      <button id="filter-button-fceecc4f" class="app-c-filter-panel__button govuk-link" aria-expanded="false" aria-controls="filter-panel-fceecc4f" data-ga4-expandable="" data-ga4-event="{&quot;event_name&quot;:&quot;select_content&quot;,&quot;type&quot;:&quot;finder&quot;,&quot;section&quot;:&quot;Filter and sort&quot;,&quot;text&quot;:&quot;Filter and sort&quot;,&quot;index_section&quot;:0,&quot;index_section_count&quot;:4}">
+          <span class="app-c-filter-panel__button-inner">Filter and sort</span>
+      </button>
+      <p class="govuk-hint app-results-indicator">100 results</p>
+    </div>
 
-<h2 class="govuk-heading-m">Search for courses</h2>
+  </div>
+</div>
 
-<!-- SEARCH -->
-  <div class="app-c-filter-section">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third" style="margin-bottom:20px;">
+
+<div class="app-c-filter-panel__content app-filter-panel-background" id="filter-panel-cae81ba6" role="region" aria-labelledby="filter-button-cae81ba6">
+
+<div>
+  <h2 class="govuk-body app-filter-heading">Search for courses</h2>
+
+  <!-- SEARCH -->
     <div class="govuk-form-group">
       <label class="govuk-label app-filter-label" for="event-name">
         <strong>Subject</strong>
@@ -29,14 +42,14 @@
 
     <details class="govuk-details">
       <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
+        <span class="govuk-details__summary-text" style="font-size:19px;">
           Search by training provider
         </span>
       </summary>
       <div class="govuk-details__text">
         <div class="govuk-form-group">
           <label class="govuk-label app-filter-label" for="event-name">
-            <strong>Enter a provider name</strong>
+            <strong>Provider name</strong>
           </label>
           <input class="govuk-input" id="event-name" name="eventName" type="text">
         </div>
@@ -46,10 +59,13 @@
     <button type="submit" class="govuk-button" data-module="govuk-button">
       Search
     </button>
-  </div>
-<!-- end SEARCH -->
+  <!-- end SEARCH -->
 
-<h2 class="govuk-heading-m" style="padding-top:20px;">Filter and sort</h2>
+</div>
+
+<div class="app-white-line"></div>
+
+<h2 class="govuk-body app-filter-heading app-filter-heading--last" style="padding-top:20px;">Filter and sort</h2>
 
 <!-- FILTER - Sort by -->
   <details class="app-c-filter-section">
@@ -98,7 +114,7 @@
   </details>
 <!-- END FILTER - Sort by -->
 
-<!-- FILTER - Search radius -->
+<!-- FILTER - Sort by -->
   <details class="app-c-filter-section">
     <!-- Filter categories heading -->
     <summary class="app-c-filter-section__summary">
@@ -109,26 +125,77 @@
     </summary>
     <!-- Filter list -->
     <div class="app-c-filter-section__content">
-      <div class="govuk-form-group">
-        <label class="govuk-label app-filter-label" for="sort">
-        <strong>Search radius</strong>
-        </label>
-        <select class="govuk-select" id="sort" name="sort">
-          <option value="radius">1 mile</option>
-          <option value="radius-2">5 miles</option>
-          <option value="radius-3" selected>10 miles</option>
-          <option value="radius-4">15 miles</option>
-          <option value="radius-5">20 miles</option>
-          <option value="radius-6">25 miles</option>
-          <option value="radius-7">50 miles</option>
-          <option value="radius-8">100 miles</option>
-          <option value="radius-9">200 miles</option>
-        </select>
+      <div class="gem-c-checkboxes govuk-form-group govuk-checkboxes--small">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-checkboxes__legend--hidden">Sort by</legend>
+          <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort" name="sort-by" type="radio" value="month">
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort">
+                1 mile
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort-2" name="sort-by" type="radio" value="year">
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort-2">
+                2 miles
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort-3" name="sort-by" type="radio" value="year">
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort-3">
+                5 miles
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort-4" name="sort-by" type="radio" value="year" checked>
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort-4">
+                10 miles
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort-4" name="sort-by" type="radio" value="year">
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort-4">
+                15 miles
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort-4" name="sort-by" type="radio" value="year">
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort-4">
+                20 miles
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort-4" name="sort-by" type="radio" value="year">
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort-4">
+                25 miles
+              </label>
+            </div>
+                        <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort-4" name="sort-by" type="radio" value="year">
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort-4">
+                50 miles
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort-4" name="sort-by" type="radio" value="year">
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort-4">
+                100 miles
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="sort-4" name="sort-by" type="radio" value="year">
+              <label class="govuk-label govuk-radios__label app-filter-label" for="sort-4">
+                200 miles
+              </label>
+            </div>
+          </div>
+        </fieldset>
       </div>
     </div>
     <!-- END filter list -->
   </details>
-<!-- END FILTER - Search radius -->
+<!-- END FILTER - Sort by -->
 
 <!-- FILTER - Visa sponsorship -->
   <details class="app-c-filter-section">
@@ -233,6 +300,59 @@
     </summary>
     <!-- Filter list -->
     <div class="app-c-filter-section__content">
+
+      <p class="app-filter-sub-category">Science, technology, engineering and mathematics (STEM)</p>
+      <div class="gem-c-checkboxes govuk-form-group govuk-checkboxes--small">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-checkboxes__legend--hidden">Secondary (ages 11 to 18)</legend>
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-4" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-4">
+                Biology
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-6" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-6">
+                Chemistry
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-10" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-10">
+                Computing
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-12" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-12">
+                Design and technology
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-25" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-25">
+                Mathematics
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-31" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-31">
+                Physics
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-35" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-35">
+                Science
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <p class="app-filter-sub-category">Languages and literature</p>
       <div class="gem-c-checkboxes govuk-form-group govuk-checkboxes--small">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-checkboxes__legend--hidden">Secondary (ages 11 to 18)</legend>
@@ -250,78 +370,6 @@
               </label>
             </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-3" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-3">
-                Art and design
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-4" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-4">
-                Biology
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-5" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-5">
-                Business studies
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-6" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-6">
-                Chemistry
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-7" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-7">
-                Citizenship
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-8" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-8">
-                Classes
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-9" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-9">
-                Communication and media studies
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-10" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-10">
-                Computing
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-11" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-11">
-                Dance
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-12" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-12">
-                Design and technology
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-13" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-13">
-                Drama
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-14" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-14">
-                Economics
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="secondary-15" name="secondary-subjects" type="checkbox">
               <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-15">
                 English
@@ -334,27 +382,9 @@
               </label>
             </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-17" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-17">
-                Geography
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="secondary-18" name="secondary-subjects" type="checkbox">
               <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-18">
                 German
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-19" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-19">
-                Health and social care
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-20" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-20">
-                History
               </label>
             </div>
             <div class="govuk-checkboxes__item">
@@ -382,15 +412,90 @@
               </label>
             </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-25" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-25">
-                Mathematics
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="secondary-26" name="secondary-subjects" type="checkbox">
               <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-26">
                 Modern languages (other)
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-34" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-34">
+                Russian
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-37" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-37">
+                Spanish
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <p class="app-filter-sub-category">Art, humanities and social sciences</p>
+      <div class="gem-c-checkboxes govuk-form-group govuk-checkboxes--small">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-checkboxes__legend--hidden">Secondary (ages 11 to 18)</legend>
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-3" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-3">
+                Art and design
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-5" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-5">
+                Business studies
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-7" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-7">
+                Citizenship
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-8" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-8">
+                Classes
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-9" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-9">
+                Communication and media studies
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-11" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-11">
+                Dance
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-13" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-13">
+                Drama
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-14" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-14">
+                Economics
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-17" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-17">
+                Geography
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-20" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-20">
+                History
               </label>
             </div>
             <div class="govuk-checkboxes__item">
@@ -406,24 +511,6 @@
               </label>
             </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-29" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-29">
-                Physical education
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-30" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-30">
-                Physical education with an EBacc subject
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-31" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-31">
-                Physics
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="secondary-32" name="secondary-subjects" type="checkbox">
               <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-32">
                 Psychology
@@ -436,33 +523,42 @@
               </label>
             </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-34" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-34">
-                Russian
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-35" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-35">
-                Science
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="secondary-36" name="secondary-subjects" type="checkbox">
               <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-36">
                 Social sciences
               </label>
             </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <p class="app-filter-sub-category">Health and physical education</p>
+      <div class="gem-c-checkboxes govuk-form-group govuk-checkboxes--small">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-checkboxes__legend--hidden">Secondary (ages 11 to 18)</legend>
+          <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-19" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-19">
+                Health and social care
+              </label>
+            </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="secondary-37" name="secondary-subjects" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-37">
-                Spanish
+              <input class="govuk-checkboxes__input" id="secondary-29" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-29">
+                Physical education
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="secondary-30" name="secondary-subjects" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label app-filter-label" for="secondary-30">
+                Physical education with an EBacc subject
               </label>
             </div>
           </div>
         </fieldset>
       </div>
-    </div>
+
     <!-- END filter list -->
   </details>
 <!-- END FILTER - Secondary -->
@@ -688,7 +784,7 @@
     <summary class="app-c-filter-section__summary">
       <h2 class="app-c-filter-section__summary-heading">
           <span class="govuk-visually-hidden">Filter by</span>
-        Further education (ages 16 and over)
+        Further education<br>(ages 16 and over)
       </h2>
     </summary>
     <!-- Filter list -->
@@ -721,34 +817,71 @@
 
 <div class="govuk-summary-card">
   <div class="govuk-summary-card__title-wrapper">
-    <h2 class="govuk-summary-card__title">
-      University of Gloucestershire
+    <h2 class="govuk-summary-card__title app-filter-label">
+      Course 1
     </h2>
     <ul class="govuk-summary-card__actions">
-      <li class="govuk-summary-card__action">
-        <a class="govuk-link" href="#">Delete choice<span class="govuk-visually-hidden"> of University of Gloucestershire (University of Gloucestershire)</span></a>
-      </li>
-      <li class="govuk-summary-card__action">
-        <a class="govuk-link" href="#">Withdraw<span class="govuk-visually-hidden"> from University of Gloucestershire (University of Gloucestershire)</span></a>
+      <li class="govuk-summary-card__action app-filter-label">
+        <a class="govuk-link" href="#">Save course<span class="govuk-visually-hidden"> for later</span></a>
       </li>
     </ul>
   </div>
   <div class="govuk-summary-card__content">
-    <dl class="govuk-summary-list">
+    <dl class="govuk-summary-list app-filter-label">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Course
+          Nearest placement school
         </dt>
         <dd class="govuk-summary-list__value">
-          English (3DMD)<br>PGCE with QTS full time
+          Blank
         </dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Location
+          Funding type
         </dt>
         <dd class="govuk-summary-list__value">
-          School name<br>Road, City, SW1 1AA
+          Blank
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Course length
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
+        </dd>
+      </div>
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Age group
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
+        </dd>
+      </div>
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Qualification awarded
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
+        </dd>
+      </div>
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree required
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Visa sponsorship
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
         </dd>
       </div>
     </dl>
@@ -756,34 +889,71 @@
 </div>
 <div class="govuk-summary-card">
   <div class="govuk-summary-card__title-wrapper">
-    <h2 class="govuk-summary-card__title">
-      University of Bristol
+    <h2 class="govuk-summary-card__title app-filter-label">
+      Course 2
     </h2>
     <ul class="govuk-summary-card__actions">
-      <li class="govuk-summary-card__action">
-        <a class="govuk-link" href="#">Delete choice<span class="govuk-visually-hidden"> of University of Bristol (University of Bristol)</span></a>
-      </li>
-      <li class="govuk-summary-card__action">
-        <a class="govuk-link" href="#">Withdraw<span class="govuk-visually-hidden"> from University of Bristol (University of Bristol)</span></a>
+      <li class="govuk-summary-card__action app-filter-label">
+        <a class="govuk-link" href="#">Save course<span class="govuk-visually-hidden"> for later</span></a>
       </li>
     </ul>
   </div>
   <div class="govuk-summary-card__content">
-    <dl class="govuk-summary-list">
+    <dl class="govuk-summary-list app-filter-label">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Course
+          Nearest placement school
         </dt>
         <dd class="govuk-summary-list__value">
-          English (Q3X1)<br>PGCE with QTS full time
+          Blank
         </dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Location
+          Funding type
         </dt>
         <dd class="govuk-summary-list__value">
-          School name<br>Road, City, SW2 1AA
+          Blank
+        </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Course length
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
+        </dd>
+      </div>
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Age group
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Qualification awarded
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree required
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Visa sponsorship
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Blank
         </dd>
       </div>
     </dl>
