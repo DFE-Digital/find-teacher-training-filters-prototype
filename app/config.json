@@ -1,0 +1,8 @@
+{
+  "serviceName": "Find teacher training courses",
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
+}
