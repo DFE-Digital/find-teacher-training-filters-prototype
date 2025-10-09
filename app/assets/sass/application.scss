@@ -18,7 +18,7 @@
     cursor: pointer;
     color: rgb(11, 12, 12);
     list-style: none;
-    padding: 5px 0px;   
+    padding: 5px 0px;
   }
 
   &__summary-heading {
@@ -161,7 +161,7 @@
 }
 
 .app-filter-heading {
-  font-size: 24px;
+  font-size: 27px;
   font-weight: 700;
 
   @include govuk-media-query($from: tablet) {
@@ -194,4 +194,8 @@
 
 .app-white-line {
   border-bottom: white solid 2px;
+}
+
+.app-location-spacing {
+    margin-top: 20px;
 }
