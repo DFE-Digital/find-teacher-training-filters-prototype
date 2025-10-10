@@ -160,6 +160,10 @@
   font-size: 19px;
 }
 
+.app-filtering-heading-light {
+  font-weight: normal;
+}
+
 .app-filter-heading {
   font-size: 27px;
   font-weight: 700;
@@ -190,10 +194,6 @@
 
 .app-white-line {
   border-bottom: white solid 2px;
-}
-
-.app-location-spacing {
-    margin-top: 20px;
 }
 
 .filter-tags {
@@ -242,4 +242,8 @@
     border-bottom: 1px solid #b1b4b6;
     margin-bottom: 20px;
     padding-bottom: 20px;
+}
+
+.app-filter-hint {
+  margin-bottom: 10px;
 }
