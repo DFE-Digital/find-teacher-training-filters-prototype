@@ -196,10 +196,6 @@
   border-bottom: white solid 2px;
 }
 
-.app-location-spacing {
-    margin-top: 20px;
-}
-
 .filter-tags {
     list-style-type: none;
     margin-block-start: 0;
@@ -246,4 +242,8 @@
     border-bottom: 1px solid #b1b4b6;
     margin-bottom: 20px;
     padding-bottom: 20px;
+}
+
+.app-filter-hint {
+  margin-bottom: 10px;
 }
