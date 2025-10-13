@@ -12,7 +12,7 @@
   border-bottom: 1px solid rgb(177, 180, 182);
 
   &__summary {
-    display: flex;
+    display: block;
     align-items: center;
     width: 100%;
     cursor: pointer;
@@ -30,6 +30,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 10px;
   }
 
   &__summary-heading--selected::after {
@@ -44,6 +45,7 @@
     font-weight: 400;
     font-size: 1rem;
     color: #505a5f;
+    margin-left: 31px;
   }
 
   &__content {
@@ -141,8 +143,9 @@
   transform: translateY(30%) rotate(-45deg) scale(1); // points down
 }
 
-
-
+.app-c-filter-section__summary {
+  margin-bottom: 15px;
+}
 
 .js-enabled {
   .app-c-filter-panel__backdrop {
