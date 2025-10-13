@@ -2,7 +2,8 @@
     <summary class="app-c-filter-section__summary">
         <h2 class="app-c-filter-section__summary-heading app-filtering-heading-light">
             <span class="govuk-visually-hidden">Filter by</span>
-        Further education<br>(ages 16 and over)
+            Further education (ages 16 and over)
+            <span class="app-c-filter-section__count" hidden></span>
         </h2>
     </summary>
     <div class="app-c-filter-section__content">
@@ -11,8 +12,16 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-checkboxes__legend--hidden">Further education (ages 16 and over)</legend>
             <div class="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-                <input type="checkbox" name="filter-further-education" id="filter-further" class="govuk-checkboxes__input">
-                <label for="filter-further" class="govuk-label govuk-checkboxes__label app-filter-label">Further education courses</label>
+                <input class="govuk-checkboxes__input" id="fe-1" name="further-education" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label app-filter-label" for="fe-1">
+                Further education
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="fe-2" name="further-education" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label app-filter-label" for="fe-2">
+                Post-16 level 2 courses
+                </label>
             </div>
             </div>
         </fieldset>

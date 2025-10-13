@@ -80,11 +80,18 @@ window.GOVUKPrototypeKit.documentReady(() => {
     }
 
     const inputs = category.querySelectorAll('input[type="checkbox"], input[type="radio"]')
-    const isSelected = Array.from(inputs).some(input => input.checked)
+    const selectedInputs = Array.from(inputs).filter(input => input.checked)
+    const isSelected = selectedInputs.length > 0
 
     const heading = category.querySelector('.app-c-filter-section__summary-heading')
     if (heading) {
       heading.classList.toggle('app-c-filter-section__summary-heading--selected', isSelected)
+    }
+
+    const counter = category.querySelector('.app-c-filter-section__count')
+    if (counter) {
+      counter.textContent = selectedInputs.length > 0 ? `${selectedInputs.length} selected` : ''
+      counter.hidden = selectedInputs.length === 0
     }
   }
 

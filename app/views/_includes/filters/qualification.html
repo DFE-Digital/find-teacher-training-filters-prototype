@@ -1,25 +1,36 @@
 <details class="app-c-filter-section">
-<summary class="app-c-filter-section__summary">
-    <h2 class="app-c-filter-section__summary-heading app-filtering-heading-light">
-        <span class="govuk-visually-hidden">Filter by</span>
-        Qualification awarded
-    </h2>
-</summary>
-<div class="app-c-filter-section__content">
-    <div class="gem-c-checkboxes govuk-form-group govuk-checkboxes--small">
-    <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-checkboxes__legend--hidden">Qualification awarded</legend>
-        <div class="govuk-checkboxes">
-        <div class="govuk-checkboxes__item">
-            <input type="checkbox" name="filter-qualification-awarded" id="filter-qualification" class="govuk-checkboxes__input">
-            <label for="filter-qualification" class="govuk-label govuk-checkboxes__label app-filter-label">QTS only</label>
+    <summary class="app-c-filter-section__summary">
+        <h2 class="app-c-filter-section__summary-heading app-filtering-heading-light">
+            <span class="govuk-visually-hidden">Filter by</span>
+            Qualification
+            <span class="app-c-filter-section__count" hidden></span>
+        </h2>
+    </summary>
+    <div class="app-c-filter-section__content">
+        <div class="gem-c-checkboxes govuk-form-group govuk-checkboxes--small">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-checkboxes__legend--hidden">Qualification</legend>
+            <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="qualification-1" name="qualification" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label app-filter-label" for="qualification-1">
+                QTS (Qualified Teacher Status)
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="qualification-2" name="qualification" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label app-filter-label" for="qualification-2">
+                PGCE with QTS
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="qualification-3" name="qualification" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label app-filter-label" for="qualification-3">
+                PGDE with QTS
+                </label>
+            </div>
+            </div>
+        </fieldset>
         </div>
-        <div class="govuk-checkboxes__item">
-            <input type="checkbox" name="filter-qualification-awarded" id="filter-qualification-2" class="govuk-checkboxes__input">
-            <label for="filter-qualification-2" class="govuk-label govuk-checkboxes__label app-filter-label">QTS with PGCE or PGDE</label>
-        </div>
-        </div>
-    </fieldset>
     </div>
-</div>
 </details>
