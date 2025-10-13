@@ -332,6 +332,17 @@ body.app-filter-panel--locked {
   margin-bottom: 15px;
 }
 
+.app-white-line-course-summary {
+  border-bottom: white solid 2px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+
+  @include govuk-media-query($from: tablet) {
+    display: none;
+  }
+
+}
+
 .filter-tags {
     list-style-type: none;
     margin-block-start: 0;
