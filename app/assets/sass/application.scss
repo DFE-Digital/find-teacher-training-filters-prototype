@@ -193,6 +193,7 @@ body.app-filter-panel--locked {
   place-content: space-between;
   align-items: baseline;
   gap: 10px;
+  margin-top: 15px;
 
   @include govuk-media-query($from: tablet) {
     display: none;
@@ -307,6 +308,7 @@ body.app-filter-panel--locked {
 
 .app-white-line {
   border-bottom: white solid 2px;
+  margin-bottom: 15px;
 }
 
 .filter-tags {
@@ -364,7 +366,6 @@ body.app-filter-panel--locked {
 .app-search-panel {
   @include govuk-media-query($from: tablet) {
     background-color: #f3f2f1;
-    border: 1px solid #b1b4b6;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -394,7 +395,7 @@ body.app-filter-panel--locked {
       margin-bottom: 0;
       padding-left: 32px;
       padding-right: 32px;
-      min-height: 48px;
+      min-height: 42px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -418,4 +419,8 @@ body.app-filter-panel--locked {
     text-decoration: underline;
     font-weight: 700;
     font-size: 19px;
+}
+
+.app-clear-all {
+  margin-bottom:0;
 }
