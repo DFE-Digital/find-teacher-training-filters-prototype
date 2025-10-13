@@ -1,3 +1,50 @@
+.save-course-button__icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: url('../images/icon-save.svg') no-repeat center / contain;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover::before {
+    opacity: 0.7;
+  }
+
+  &[data-state="saved"]::before,
+  &.is-saved::before {
+    background-image: url('../images/icon-saved.svg');
+    opacity: 1;
+  }
+}
+
+.results-save-course-button__unstyled-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.save-course-button__text {
+  color:#1d70b8;
+  font-size: 19px;
+}
+
+.govuk-summary-card__actions {
+  margin-bottom: 0;
+}
 //
 // For guidance on how to add CSS and SCSS see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
@@ -12,7 +59,7 @@
   border-bottom: 1px solid rgb(177, 180, 182);
 
   &__summary {
-    display: flex;
+    display: block;
     align-items: center;
     width: 100%;
     cursor: pointer;
@@ -30,6 +77,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 10px;
   }
 
   &__summary-heading--selected::after {
@@ -44,6 +92,7 @@
     font-weight: 400;
     font-size: 1rem;
     color: #505a5f;
+    margin-left: 31px;
   }
 
   &__content {
@@ -141,8 +190,9 @@
   transform: translateY(30%) rotate(-45deg) scale(1); // points down
 }
 
-
-
+.app-c-filter-section__summary {
+  margin-bottom: 15px;
+}
 
 .js-enabled {
   .app-c-filter-panel__backdrop {
@@ -332,6 +382,17 @@ body.app-filter-panel--locked {
   margin-bottom: 15px;
 }
 
+.app-white-line-course-summary {
+  border-bottom: white solid 2px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+
+  @include govuk-media-query($from: tablet) {
+    display: none;
+  }
+
+}
+
 .filter-tags {
     list-style-type: none;
     margin-block-start: 0;
@@ -427,6 +488,7 @@ body.app-filter-panel--locked {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
 
     .app-white-line {
@@ -451,4 +513,36 @@ body.app-filter-panel--locked {
 
 .app-clear-all {
   margin-bottom:0;
+}
+
+.app-course-title-row {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+  align-items: start;
+
+  @include govuk-media-query($from: tablet) {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  &__title {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__action {
+    justify-self: start;
+
+    @include govuk-media-query($from: tablet) {
+      justify-self: end;
+    }
+  }
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-course-title-row {
+    gap: 20px;
+  }
 }

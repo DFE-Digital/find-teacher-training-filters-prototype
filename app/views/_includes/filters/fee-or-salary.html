@@ -3,26 +3,33 @@
         <h2 class="app-c-filter-section__summary-heading app-filtering-heading-light">
             <span class="govuk-visually-hidden">Filter by</span>
             Fee or salary
-            <span class="app-c-filter-section__count" hidden></span>
         </h2>
+        <br>
+        <span class="app-c-filter-section__count govuk-hint" hidden></span>
     </summary>
     <div class="app-c-filter-section__content">
-        <div class="gem-c-radios govuk-form-group govuk-radios--small">
+        <div class="gem-c-radios govuk-form-group govuk-checkboxes--small">
         <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-radios__legend--hidden"><span class="govuk-visually-hidden">Fee or salary</span></legend>
-            <div class="govuk-radios">
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="fee" name="fee-or-salary" type="radio">
-                <label class="govuk-label govuk-radios__label app-filter-label" for="fee">
-                Fee-paying
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m gem-c-checkboxes__legend--hidden"><span class="govuk-visually-hidden">Fee or salary</span></legend>
+                       <div class="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="fee" name="fee-or-salary" type="checkbox">
+                    <label class="govuk-label govuk-checkboxes__label app-filter-label" for="fee">
+                    Fee - no salary
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="fee-2" name="fee-or-salary" type="checkbox">
+                    <label class="govuk-label govuk-checkboxes__label app-filter-label" for="fee-2">
+                    Salary
+                    </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="fee-3" name="fee-or-salary" type="checkbox">
+                    <label class="govuk-label govuk-checkboxes__label app-filter-label" for="fee-3">
+                    Teaching apprenticeship with salary
                 </label>
-            </div>
-            <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="salary" name="fee-or-salary" type="radio">
-                <label class="govuk-label govuk-radios__label app-filter-label" for="salary">
-                Salaried
-                </label>
-            </div>
+                </div>
             </div>
         </fieldset>
         </div>
