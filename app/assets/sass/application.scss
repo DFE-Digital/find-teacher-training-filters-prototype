@@ -172,12 +172,16 @@
   @include govuk-media-query($until: tablet) {
     .app-c-filter-panel--expanded {
       .app-c-filter-panel__content {
-        position: fixed;
-        inset: 0;
+        position: static;
+        inset: auto;
         padding: 15px;
         background: #f3f2f1;
-        overflow-y: auto;
-        z-index: 60;
+        overflow: visible;
+        z-index: auto;
+      }
+
+      .app-c-filter-panel__backdrop {
+        display: none;
       }
     }
   }
