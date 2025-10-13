@@ -31,10 +31,10 @@
 
   &__content {
     // GOV.UK overrides: checkboxes and radios white on grey
-    .govuk-checkboxes__label::before,
-    .govuk-radios__label::before {
-      background-color: white;
-    }
+  .govuk-checkboxes__label::before,
+  .govuk-radios__label::before {
+    background-color: white;
+  }
   }
 }
 
