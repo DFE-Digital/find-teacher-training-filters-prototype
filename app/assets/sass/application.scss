@@ -333,29 +333,36 @@ body.app-filter-panel--locked {
 }
 
 .filter-tags {
-  list-style-type: none;
-  margin-block-start: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+    list-style-type: none;
+    margin-block-start: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
 }
 
 .filter__tag {
-  border: 1px solid #b1b4b6;
-  border-radius: .3125em;
-  padding: 5px 10px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  color: #0b0c0c;
-  background-color: #fff;
-  font-family: "GDS Transport", arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  font-size: 1.1875rem;
-  line-height: 1.3157894737;
+    border: 1px solid #b1b4b6;
+    border-radius: .3125em;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #0b0c0c;
+    background-color: #fff;
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 1.1875rem;
+    line-height: 1.3157894737;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e8f2fa;
+    }
 }
 
 .filter__tag--text {

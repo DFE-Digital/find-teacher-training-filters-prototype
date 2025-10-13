@@ -101,10 +101,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     }
 
     const clone = heading.cloneNode(true)
-    const hidden = clone.querySelector('.govuk-visually-hidden')
-    if (hidden) {
-      hidden.remove()
-    }
+    clone.querySelectorAll('.govuk-visually-hidden, .app-c-filter-section__count').forEach(node => node.remove())
 
     return clone.textContent.trim()
   }
