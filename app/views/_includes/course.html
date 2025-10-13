@@ -15,15 +15,11 @@
 
     <ul class="govuk-summary-card__actions">
       <li class="govuk-summary-card__action app-filter-label app-summary-card-action">
-<button class="unstyled-button results-save-course-button__unstyled-button" data-action="click-&gt;save-course#toggle">
-      <div class="save-course-button__button govuk-!-margin-0 govuk-!-padding-top-2">
-        <img alt="Save" width="24" height="24" class="govuk-!-margin-right-2 govuk-!-padding-top-0" data-save-course-target="icon" src="/assets/images/icon-save.svg">
-
-        <span class="govuk-body" data-save-course-target="text">
-          Save this course for later
-        </span>
-      </div>
-    </button>      </li>
+        <button class="unstyled-button results-save-course-button__unstyled-button" data-action="click->save-course#toggle" data-save-course-target="button" data-state="unsaved" aria-label="Save this course">
+          <span class="save-course-button__icon" data-save-course-target="icon"></span>
+          <span class="save-course-button__text govuk-body govuk-!-margin-bottom-0" data-save-course-target="text">Save this course for later</span>
+        </button>
+      </li>
     </ul>
   </div>
   <div class="govuk-summary-card__content">

@@ -288,6 +288,28 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
     renderActiveFilters()
 
+    document.querySelectorAll('[data-save-course-target="button"]').forEach(button => {
+      const icon = button.querySelector('[data-save-course-target="icon"]')
+      const text = button.querySelector('[data-save-course-target="text"]')
+
+      button.addEventListener('click', () => {
+        const isSaved = button.getAttribute('data-state') === 'saved'
+        const newState = isSaved ? 'unsaved' : 'saved'
+
+        button.setAttribute('data-state', newState)
+        button.classList.toggle('is-saved', !isSaved)
+
+        if (icon) {
+          icon.setAttribute('data-state', newState)
+          icon.classList.toggle('is-saved', !isSaved)
+        }
+
+        if (text) {
+          text.textContent = newState === 'saved' ? 'Saved' : 'Save this course for later'
+        }
+      })
+    })
+
     if (smallViewportQuery.matches) {
       bindEscape()
     } else {
