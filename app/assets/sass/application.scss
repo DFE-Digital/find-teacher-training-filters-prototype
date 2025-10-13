@@ -27,14 +27,31 @@
     font-weight: 700;
     font-size: 1.1875rem;
     line-height: 1.31579;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__summary-heading--selected::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  &__count {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #505a5f;
   }
 
   &__content {
     // GOV.UK overrides: checkboxes and radios white on grey
-    .govuk-checkboxes__label::before,
-    .govuk-radios__label::before {
-      background-color: white;
-    }
+  .govuk-checkboxes__label::before,
+  .govuk-radios__label::before {
+    background-color: white;
+  }
   }
 }
 
