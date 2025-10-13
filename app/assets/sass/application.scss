@@ -36,6 +36,15 @@
   align-items: center;
   gap: 8px;
 }
+
+.save-course-button__text {
+  color:#1d70b8;
+  font-size: 19px;
+}
+
+.govuk-summary-card__actions {
+  margin-bottom: 0;
+}
 //
 // For guidance on how to add CSS and SCSS see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
