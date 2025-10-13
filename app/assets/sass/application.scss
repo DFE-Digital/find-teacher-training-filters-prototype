@@ -546,3 +546,13 @@ body.app-filter-panel--locked {
     gap: 20px;
   }
 }
+
+.app-c-filter-panel__action--submit {
+
+  margin-bottom: 5px;
+
+  @include govuk-media-query($from: tablet) {
+    margin-bottom: 20px;
+  }
+
+}
