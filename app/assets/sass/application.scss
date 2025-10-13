@@ -38,6 +38,18 @@
   }
 }
 
+.app-search-top-row {
+  margin-bottom: 20px;
+
+  @include govuk-media-query($from: tablet) {
+    margin-bottom: 25px;
+
+    .govuk-grid-column-full {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
 .app-c-filter-section__summary:focus .app-c-filter-section__summary-heading {
   background-color: #fd0;
   outline: 3px solid rgba(0, 0, 0, 0);
@@ -113,12 +125,78 @@
 }
 
 
+
+
+.js-enabled {
+  .app-c-filter-panel__backdrop {
+    display: none;
+  }
+
+  .app-c-filter-panel--collapsed {
+    .app-c-filter-panel__sections {
+      display: none;
+    }
+  }
+
+  .app-c-filter-panel--expanded {
+    .app-c-filter-panel__backdrop {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 50;
+    }
+
+    .app-c-filter-panel__sections {
+      display: block;
+    }
+  }
+
+  @include govuk-media-query($until: tablet) {
+    .app-c-filter-panel--expanded {
+      .app-c-filter-panel__content {
+        position: fixed;
+        inset: 0;
+        padding: 15px;
+        background: #f3f2f1;
+        overflow-y: auto;
+        z-index: 60;
+      }
+    }
+  }
+
+  @include govuk-media-query($from: tablet) {
+    .app-c-filter-panel__backdrop {
+      display: none !important;
+    }
+
+    .app-c-filter-panel--collapsed,
+    .app-c-filter-panel--expanded {
+      .app-c-filter-panel__backdrop {
+        display: none;
+      }
+
+      .app-c-filter-panel__sections {
+        display: block;
+      }
+    }
+  }
+}
+
+body.app-filter-panel--locked {
+  overflow: hidden;
+}
+
 .app-c-filter-panel__header {
   display: flex;
   flex-wrap: wrap;
   place-content: space-between;
   align-items: baseline;
   gap: 10px;
+
+  @include govuk-media-query($from: tablet) {
+    display: none;
+  }
 }
 
 .app-c-filter-panel__button {
@@ -134,6 +212,10 @@
   font-weight: 400;
   font-size: 1.1875rem;
   line-height: 1.3157894737;
+
+  @include govuk-media-query($from: desktop) {
+    display: none;
+  }
 }
 
 .app-c-filter-panel__button[aria-expanded="true"]::before {
@@ -174,6 +256,33 @@
   }
 }
 
+.app-filter-heading--search {
+  @include govuk-media-query($from: tablet) {
+    display: none;
+  }
+}
+
+.app-search-top-row {
+  margin-bottom: 20px;
+
+  @include govuk-media-query($from: tablet) {
+    margin-bottom: 25px;
+
+    .govuk-grid-column-full {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.app-search-and-filter {
+  @include govuk-media-query($from: tablet) {
+    .app-c-filter-panel__sections {
+      margin-top: 0;
+    }
+  }
+}
+
 .app-filter-panel-background {
   background-color: #f3f2f1;
   padding-left: 15px;
@@ -184,6 +293,10 @@
 .app-results-indicator {
   font-size: 16px;
   text-align: right;
+
+  @include govuk-media-query($from: tablet) {
+    display: none;
+  }
 }
 
 .app-filter-sub-category {
@@ -246,4 +359,49 @@
 
 .app-filter-hint {
   margin-bottom: 10px;
+}
+
+.app-search-panel {
+  @include govuk-media-query($from: tablet) {
+    background-color: #f3f2f1;
+    border: 1px solid #b1b4b6;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+
+    .app-search-field {
+      flex: 1 1 0;
+    }
+
+    .govuk-form-group {
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin-bottom: 5px;
+      }
+    }
+
+    .app-search-submit {
+      display: flex;
+      flex: 0 0 auto;
+    }
+
+    .app-search-submit .govuk-button {
+      margin-bottom: 0;
+      padding-left: 32px;
+      padding-right: 32px;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app-white-line {
+      display: none;
+    }
+  }
 }

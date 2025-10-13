@@ -1,6 +1,11 @@
-<div class="app-c-filter-panel__content app-filter-panel-background" id="filter-panel-cae81ba6" role="region" aria-labelledby="filter-button-cae81ba6">
-    <div>
-        {% include "_includes/search.html" %}
-        {% include "_includes/filter-panel.html" %}
-  </div>
+<div class="app-c-filter-panel" data-filter-panel>
+    <div class="app-c-filter-panel__backdrop" data-filter-backdrop></div>
+    <div class="app-c-filter-panel__content app-filter-panel-background" id="filter-panel" role="region" aria-labelledby="filter-toggle">
+        <div data-search-panel-home>
+            <form class="app-search-panel" data-search-panel>
+                {% include "_includes/search.html" %}
+            </form>
+            {% include "_includes/filter-panel.html" %}
+        </div>
+    </div>
 </div>
