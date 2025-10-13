@@ -6,6 +6,16 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
+{% block stylesheets %}
+  {{ super() }}
+  <link href="/stylesheets/application.css" rel="stylesheet">
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+  <script src="/javascripts/application.js"></script>
+{% endblock %}
+
 {% block header %}
 
     {{ govukHeader() }}

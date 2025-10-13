@@ -4,9 +4,12 @@
 
 {% include "_includes/heading.html" %}
 
-<div class="govuk-grid-row">
+<div class="app-search-top-row" data-search-top-row hidden>
+  <div class="app-search-top-row__inner" data-search-target></div>
+</div>
 
-  <div class="govuk-grid-column-one-third" style="margin-bottom:20px;">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third app-search-and-filter" style="margin-bottom:20px;" data-search-panel-wrapper>
     {% include "_includes/search-and-filter.html" %}
   </div>
 
