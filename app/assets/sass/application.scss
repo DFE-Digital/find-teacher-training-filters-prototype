@@ -310,51 +310,51 @@ body.app-filter-panel--locked {
 }
 
 .filter-tags {
-    list-style-type: none;
-    margin-block-start: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  list-style-type: none;
+  margin-block-start: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .filter__tag {
-    border: 1px solid #b1b4b6;
-    border-radius: .3125em;
-    padding: 5px 10px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    color: #0b0c0c;
-    background-color: #fff;
-    font-family: "GDS Transport", arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 400;
-    font-size: 1.1875rem;
-    line-height: 1.3157894737;
+  border: 1px solid #b1b4b6;
+  border-radius: .3125em;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: #0b0c0c;
+  background-color: #fff;
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 1.1875rem;
+  line-height: 1.3157894737;
 }
 
 .filter__tag--text {
-    color: #0b0c0c;
+  color: #0b0c0c;
 }
 
 .filter__tag::before {
-    margin-top: 1px;
-    content: "×";
-    padding-right: 5px;
-    font-size: 22px;
-    color: #0b0c0c;
+  margin-top: 1px;
+  content: "×";
+  padding-right: 5px;
+  font-size: 22px;
+  color: #0b0c0c;
 }
 
 .app-summary-card-action {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .app-active-filter--last-child {
-    border-bottom: 1px solid #b1b4b6;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+  border-bottom: 1px solid #b1b4b6;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .app-filter-hint {
@@ -404,4 +404,18 @@ body.app-filter-panel--locked {
       display: none;
     }
   }
+}
+.app-search-result__course-name {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.31579;
+}
+
+.app-search-result__provider-name {
+    display: block;
+    text-decoration: underline;
+    font-weight: 700;
+    font-size: 19px;
 }
