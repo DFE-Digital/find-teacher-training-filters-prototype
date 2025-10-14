@@ -22,13 +22,13 @@ window.GOVUKPrototypeKit.documentReady(() => {
   const content = filterPanel.querySelector('.app-c-filter-panel__content')
   const toggleText = filterToggle.querySelector('.app-c-filter-panel__button-inner')
   const filterCategories = filterPanel.querySelectorAll('.app-c-filter-section')
-  const filterInputs = filterPanel.querySelectorAll('.app-c-filter-section input[type="checkbox"], .app-c-filter-section input[type="radio"]')
+  const filterInputs = filterPanel.querySelectorAll('.app-c-filter-section input[type="checkbox"], .app-c-filter-section input[type="radio"], .app-c-filter-section input[type="text"], .app-c-filter-section select')
 
   const smallViewportQuery = window.matchMedia('(max-width: 40em)')
 
   const getAppliedFilterIds = () =>
     Array.from(filterInputs)
-      .filter(input => input.checked)
+      .filter(input => (input.type === 'checkbox' || input.type === 'radio') ? input.checked : input.value.trim() !== '')
       .map(input => input.id)
 
   let appliedFilterIds = new Set(getAppliedFilterIds())
@@ -106,6 +106,136 @@ window.GOVUKPrototypeKit.documentReady(() => {
     return clone.textContent.trim()
   }
 
+  const primaryActiveFilterLabels = {
+    primary: 'Primary',
+    'primary-2': 'Primary with English',
+    'primary-3': 'Primary with geography and history',
+    'primary-4': 'Primary with mathematics',
+    'primary-5': 'Primary with modern languages',
+    'primary-6': 'Primary with physical education',
+    'primary-7': 'Primary with science'
+  }
+
+  const secondaryActiveFilterLabels = {
+    secondary: 'Ancient Greek',
+    'secondary-2': 'Ancient Hebrew',
+    'secondary-3': 'Art and design',
+    'secondary-4': 'Biology',
+    'secondary-5': 'Business studies',
+    'secondary-6': 'Chemistry',
+    'secondary-7': 'Citizenship',
+    'secondary-8': 'Classes',
+    'secondary-9': 'Communication and media studies',
+    'secondary-10': 'Computing',
+    'secondary-11': 'Dance',
+    'secondary-12': 'Design and technology',
+    'secondary-13': 'Drama',
+    'secondary-14': 'Economics',
+    'secondary-15': 'English',
+    'secondary-16': 'French',
+    'secondary-17': 'Geography',
+    'secondary-18': 'German',
+    'secondary-19': 'Health and social care',
+    'secondary-20': 'History',
+    'secondary-21': 'Italian',
+    'secondary-22': 'Japanese',
+    'secondary-23': 'Latin',
+    'secondary-24': 'Mandarin',
+    'secondary-25': 'Mathematics',
+    'secondary-26': 'Modern languages (other)',
+    'secondary-27': 'Music',
+    'secondary-28': 'Philosophy',
+    'secondary-29': 'Physical education',
+    'secondary-30': 'Physical education with an EBacc subject',
+    'secondary-31': 'Physics',
+    'secondary-32': 'Psychology',
+    'secondary-33': 'Religious education',
+    'secondary-34': 'Russian',
+    'secondary-35': 'Science',
+    'secondary-36': 'Social sciences',
+    'secondary-37': 'Spanish'
+  }
+
+  const searchRadiusActiveFilterLabels = {
+    'radius': 'Search radius: 10 miles',
+    'radius-2': 'Search radius: 20 miles',
+    'radius-3': 'Search radius: 50 miles',
+    'radius-4': 'Search radius: 100 miles'
+  }
+
+  const sortByActiveFilterLabels = {
+    'sort': 'Sort by: Distance',
+    'sort-2': 'Sort by: Course name (a to z)',
+    'sort-3': 'Sort by: Provider name (a to z)',
+    'sort-4': 'Sort by: Start date'
+  }
+
+  const furtherEducationActiveFilterLabels = {
+    'fe-1': 'Further education',
+  }
+
+  const SendActiveFilterLabels = {
+    'send': 'Courses with a SEND specialism',
+  }
+
+  const FeeOrSalaryActiveFilterLabels = {
+    'fee': 'Fee-paying courses',
+    'fee-2': 'Courses with a salary',
+    'fee-3': 'Apprenticeships courses',
+  }
+
+  const FullTimePartTimeActiveFilterLabels = {
+    'full-time': 'Full-time',
+    'part-time': 'Part-time',
+  }
+
+  const QualificationActiveFilterLabels = {
+    'qualification': 'Qualification: QTS only',
+    'qualification-2': 'Qualification: QTS with PGCE or PGDE',
+  }
+
+  const DegreeGradeActiveFilterLabels = {
+    'degree-grade': 'Degree grade: 2:1 or first',
+    'degree-grade-2': 'Degree grade: 2:2',
+    'degree-grade-3': 'Degree grade: Third',
+    'degree-grade-4': 'Degree grade: Pass',
+    'degree-grade-5': 'Degree grade: No degree',
+    'degree-grade-6': 'Degree grade: Show all courses',
+  }
+
+  const VisaSponsorshipActiveFilterLabels = {
+    'visa-1': 'Courses with visa sponsorship',
+  }
+
+  const OnlineInterviewsActiveFilterLabels = {
+    'filter-interview': 'Courses with online interviews',
+  }
+
+  const StartDateActiveFilterLabels = {
+    'filter-start': 'Courses starting in September 2026',
+    'filter-start-2': 'Courses starting after September 2026',
+  }
+
+  const activeFilterLabelMap = {
+    ...primaryActiveFilterLabels,
+    ...secondaryActiveFilterLabels,
+    ...searchRadiusActiveFilterLabels,
+    ...sortByActiveFilterLabels,
+    ...furtherEducationActiveFilterLabels,
+    ...SendActiveFilterLabels,
+    ...FeeOrSalaryActiveFilterLabels,
+    ...FullTimePartTimeActiveFilterLabels,
+    ...QualificationActiveFilterLabels,
+    ...DegreeGradeActiveFilterLabels,
+    ...VisaSponsorshipActiveFilterLabels,
+    ...OnlineInterviewsActiveFilterLabels,
+    ...StartDateActiveFilterLabels,
+  }
+
+  const getActiveFilterLabel = (id, defaultLabel) => activeFilterLabelMap[id] || defaultLabel
+
+  const trainProviderInput = filterPanel.querySelector('#training-provider')
+
   const renderActiveFilters = () => {
     activeFiltersList.innerHTML = ''
 
@@ -116,31 +246,59 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
     activeFiltersContainer.hidden = false
 
+    const createTextTag = (id, labelText) => {
+      const listItem = document.createElement('li')
+      const button = document.createElement('button')
+      button.type = 'button'
+      button.className = 'filter__tag'
+      button.setAttribute('data-remove-filter', id)
+      button.innerHTML = `<span class="filter__tag--text">${labelText}</span>`
+      listItem.appendChild(button)
+      activeFiltersList.appendChild(listItem)
+    }
+
     appliedFilterIds.forEach(id => {
+      if (id === 'training-provider') {
+        if (trainProviderInput && trainProviderInput.value.trim()) {
+          createTextTag(id, `Provider: ${trainProviderInput.value.trim()}`)
+        }
+        return
+      }
+
       const input = document.getElementById(id)
       if (!input) {
         return
       }
 
       const label = filterPanel.querySelector(`label[for="${CSS.escape(id)}"]`)
-      if (!label) {
+      const defaultLabel = (() => {
+        if (!label) {
+          return ''
+        }
+
+        const categoryHeading = label.closest('.app-c-filter-section')?.querySelector('.app-c-filter-section__summary-heading')
+        const categoryTitle = getCategoryTitle(categoryHeading)
+        const filterTitle = label.textContent.trim()
+        return categoryTitle ? `${categoryTitle}: ${filterTitle}` : filterTitle
+      })()
+
+      const tagText = getActiveFilterLabel(id, defaultLabel)
+      if (!tagText) {
         return
       }
 
-      const categoryHeading = label.closest('.app-c-filter-section')?.querySelector('.app-c-filter-section__summary-heading')
-      const categoryTitle = getCategoryTitle(categoryHeading)
-      const filterTitle = label.textContent.trim()
-      const tagText = categoryTitle ? `${categoryTitle}: ${filterTitle}` : filterTitle
+      createTextTag(id, tagText)
+    })
+  }
 
-      const listItem = document.createElement('li')
-      const button = document.createElement('button')
-      button.type = 'button'
-      button.className = 'filter__tag'
-      button.setAttribute('data-remove-filter', id)
-      button.innerHTML = `<span class="filter__tag--text">${tagText}</span>`
-
-      listItem.appendChild(button)
-      activeFiltersList.appendChild(listItem)
+  if (trainProviderInput) {
+    trainProviderInput.addEventListener('input', () => {
+      if (trainProviderInput.value.trim()) {
+        appliedFilterIds.add('training-provider')
+      } else {
+        appliedFilterIds.delete('training-provider')
+      }
+      renderActiveFilters()
     })
   }
 
@@ -148,7 +306,11 @@ window.GOVUKPrototypeKit.documentReady(() => {
     appliedFilterIds = new Set()
 
     filterInputs.forEach(input => {
-      if (input.checked) {
+      if (input.type === 'checkbox' || input.type === 'radio') {
+        if (input.checked) {
+          appliedFilterIds.add(input.id)
+        }
+      } else if (input.value.trim()) {
         appliedFilterIds.add(input.id)
       }
     })
@@ -161,7 +323,11 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
     const input = document.getElementById(id)
     if (input) {
-      input.checked = false
+      if (input.type === 'checkbox' || input.type === 'radio') {
+        input.checked = false
+      } else {
+        input.value = ''
+      }
       input.dispatchEvent(new Event('change', { bubbles: true }))
     }
 
@@ -186,7 +352,11 @@ window.GOVUKPrototypeKit.documentReady(() => {
       appliedFilterIds.forEach(id => {
         const input = document.getElementById(id)
         if (input) {
-          input.checked = false
+          if (input.type === 'checkbox' || input.type === 'radio') {
+            input.checked = false
+          } else {
+            input.value = ''
+          }
           input.dispatchEvent(new Event('change', { bubbles: true }))
         }
       })
@@ -279,9 +449,26 @@ window.GOVUKPrototypeKit.documentReady(() => {
     setExpandedState(!smallViewportQuery.matches)
 
     filterInputs.forEach(input => {
-      input.addEventListener('change', () => {
-        updateCategorySelection(input.closest('.app-c-filter-section'))
-      })
+      const category = input.closest('.app-c-filter-section')
+
+      const handleChange = () => {
+        updateCategorySelection(category)
+        if (input.type === 'checkbox' || input.type === 'radio') {
+          if (input.checked) {
+            appliedFilterIds.add(input.id)
+          } else {
+            appliedFilterIds.delete(input.id)
+          }
+        } else if (input.value.trim()) {
+          appliedFilterIds.add(input.id)
+        } else {
+          appliedFilterIds.delete(input.id)
+        }
+        renderActiveFilters()
+      }
+
+      const eventName = input.type === 'checkbox' || input.type === 'radio' ? 'change' : 'input'
+      input.addEventListener(eventName, handleChange)
     })
 
     filterCategories.forEach(category => updateCategorySelection(category))
