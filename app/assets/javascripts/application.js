@@ -212,8 +212,8 @@ window.GOVUKPrototypeKit.documentReady(() => {
   }
 
   const StartDateActiveFilterLabels = {
-    'filter-start': 'Courses starting in September 2026',
-    'filter-start-2': 'Courses starting after September 2026',
+    'filter-start': 'Start date: September 2026 only',
+    'filter-start-2': 'Start date: October 2026 to July 2027',
   }
 
   const activeFilterLabelMap = {
