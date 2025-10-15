@@ -32,6 +32,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
       .map(input => input.id)
 
   let appliedFilterIds = new Set()
+  let countsAreApplied = false
 
   const lockScroll = locked => {
     document.body.classList.toggle('app-filter-panel--locked', locked)
@@ -74,7 +75,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     }
   }
 
-  const updateCategorySelection = category => {
+  const updateCategorySelection = (category, updateCount = false) => {
     if (!category) {
       return
     }
@@ -93,10 +94,13 @@ window.GOVUKPrototypeKit.documentReady(() => {
       heading.classList.toggle('app-c-filter-section__summary-heading--selected', isSelected)
     }
 
-    const counter = category.querySelector('.app-c-filter-section__count')
-    if (counter) {
-      counter.textContent = selectedInputs.length > 0 ? `${selectedInputs.length} selected` : ''
-      counter.hidden = selectedInputs.length === 0
+    if (updateCount) {
+      const counter = category.querySelector('.app-c-filter-section__count')
+      if (counter) {
+        const countToShow = selectedInputs.length
+        counter.textContent = countToShow > 0 ? `${countToShow} selected` : ''
+        counter.hidden = countToShow === 0
+      }
     }
   }
 
@@ -301,6 +305,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
   const applyFilters = () => {
     appliedFilterIds = new Set()
+    countsAreApplied = true
 
     filterInputs.forEach(input => {
       if (input.type === 'checkbox' || input.type === 'radio') {
@@ -312,6 +317,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
       }
     })
 
+    filterCategories.forEach(category => updateCategorySelection(category, true))
     renderActiveFilters()
   }
 
@@ -449,14 +455,24 @@ window.GOVUKPrototypeKit.documentReady(() => {
       const category = input.closest('.app-c-filter-section')
 
       const handleChange = () => {
-        updateCategorySelection(category)
+        // Do not update counts in real time; only toggle selected class
+        updateCategorySelection(category, false)
       }
 
       const eventName = input.type === 'checkbox' || input.type === 'radio' ? 'change' : 'input'
       input.addEventListener(eventName, handleChange)
     })
 
-    filterCategories.forEach(category => updateCategorySelection(category))
+    // On first load, if there are any preselected defaults, show them as applied
+    const initialIds = getAppliedFilterIds()
+    if (initialIds.length > 0) {
+      appliedFilterIds = new Set(initialIds)
+      countsAreApplied = true
+      filterCategories.forEach(category => updateCategorySelection(category, true))
+      renderActiveFilters()
+    } else {
+      filterCategories.forEach(category => updateCategorySelection(category, false))
+    }
 
     document.querySelectorAll('[data-save-course-target="button"]').forEach(button => {
       const icon = button.querySelector('[data-save-course-target="icon"]')
