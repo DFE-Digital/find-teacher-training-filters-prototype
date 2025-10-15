@@ -31,7 +31,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
       .filter(input => (input.type === 'checkbox' || input.type === 'radio') ? input.checked : input.value.trim() !== '')
       .map(input => input.id)
 
-  let appliedFilterIds = new Set(getAppliedFilterIds())
+  let appliedFilterIds = new Set()
 
   const lockScroll = locked => {
     document.body.classList.toggle('app-filter-panel--locked', locked)
@@ -79,8 +79,13 @@ window.GOVUKPrototypeKit.documentReady(() => {
       return
     }
 
-    const inputs = category.querySelectorAll('input[type="checkbox"], input[type="radio"]')
-    const selectedInputs = Array.from(inputs).filter(input => input.checked)
+    const inputs = category.querySelectorAll('input[type="checkbox"], input[type="radio"], input[type="text"]')
+    const selectedInputs = Array.from(inputs).filter(input => {
+      if (input.type === 'text') {
+        return input.value.trim() !== ''
+      }
+      return input.checked
+    })
     const isSelected = selectedInputs.length > 0
 
     const heading = category.querySelector('.app-c-filter-section__summary-heading')
@@ -165,9 +170,10 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
   const sortByActiveFilterLabels = {
     'sort': 'Sort by: Distance',
-    'sort-2': 'Sort by: Course name (a to z)',
-    'sort-3': 'Sort by: Provider name (a to z)',
-    'sort-4': 'Sort by: Start date'
+    'sort-1': 'Sort by: Course name (a to z)',
+    'sort-2': 'Sort by: Provider name (a to z)',
+    'sort-3': 'Sort by: Start date',
+    'sort-4': 'Sort by: Fee or salary'
   }
 
   const furtherEducationActiveFilterLabels = {
@@ -291,16 +297,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     })
   }
 
-  if (trainProviderInput) {
-    trainProviderInput.addEventListener('input', () => {
-      if (trainProviderInput.value.trim()) {
-        appliedFilterIds.add('training-provider')
-      } else {
-        appliedFilterIds.delete('training-provider')
-      }
-      renderActiveFilters()
-    })
-  }
+  // Defer adding provider tag until Apply is clicked
 
   const applyFilters = () => {
     appliedFilterIds = new Set()
@@ -453,18 +450,6 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
       const handleChange = () => {
         updateCategorySelection(category)
-        if (input.type === 'checkbox' || input.type === 'radio') {
-          if (input.checked) {
-            appliedFilterIds.add(input.id)
-          } else {
-            appliedFilterIds.delete(input.id)
-          }
-        } else if (input.value.trim()) {
-          appliedFilterIds.add(input.id)
-        } else {
-          appliedFilterIds.delete(input.id)
-        }
-        renderActiveFilters()
       }
 
       const eventName = input.type === 'checkbox' || input.type === 'radio' ? 'change' : 'input'
@@ -472,8 +457,6 @@ window.GOVUKPrototypeKit.documentReady(() => {
     })
 
     filterCategories.forEach(category => updateCategorySelection(category))
-
-    renderActiveFilters()
 
     document.querySelectorAll('[data-save-course-target="button"]').forEach(button => {
       const icon = button.querySelector('[data-save-course-target="icon"]')
