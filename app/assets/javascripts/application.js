@@ -11,9 +11,11 @@ window.GOVUKPrototypeKit.documentReady(() => {
   const searchContainer = document.querySelector('[data-search-target]')
   const searchPanel = filterPanel ? filterPanel.querySelector('[data-search-panel]') : null
   const searchRow = document.querySelector('[data-search-top-row]')
+  const resultsHeading = document.querySelector('[data-results-heading]')
   const activeFiltersContainer = document.querySelector('[data-active-filters-container]')
   const activeFiltersList = document.querySelector('[data-active-filters]')
   const clearFiltersLink = document.querySelector('[data-clear-filters]')
+  const clearInlineLink = document.querySelector('[data-clear-filters-inline]')
 
   if (!filterPanel || !filterToggle || !filterBackdrop || !filterSections || !searchPanel || !searchRow || !activeFiltersContainer || !activeFiltersList) {
     return
@@ -222,8 +224,9 @@ window.GOVUKPrototypeKit.documentReady(() => {
   }
 
   const StartDateActiveFilterLabels = {
-    'filter-start': 'Start date: September 2026 only',
-    'filter-start-2': 'Start date: October 2026 to July 2027',
+    'filter-start': 'Start date: January to August 2026',
+    'filter-start-2': 'Start date: September 2026 only',
+    'filter-start-3': 'Start date: October 2026 to July 2027',
   }
 
   const activeFilterLabelMap = {
@@ -251,10 +254,12 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
     if (appliedFilterIds.size === 0) {
       activeFiltersContainer.hidden = true
+      if (clearInlineLink) clearInlineLink.hidden = true
       return
     }
 
     activeFiltersContainer.hidden = false
+    if (clearInlineLink) clearInlineLink.hidden = false
 
     const createTextTag = (id, labelText) => {
       const listItem = document.createElement('li')
@@ -318,6 +323,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     })
 
     filterCategories.forEach(category => updateCategorySelection(category, true))
+    updateHeadingFromLocation()
     renderActiveFilters()
   }
 
@@ -369,11 +375,52 @@ window.GOVUKPrototypeKit.documentReady(() => {
     })
   }
 
+  if (clearInlineLink) {
+    clearInlineLink.addEventListener('click', event => {
+      event.preventDefault()
+
+      appliedFilterIds.forEach(id => {
+        const input = document.getElementById(id)
+        if (input) {
+          if (input.type === 'checkbox' || input.type === 'radio') {
+            input.checked = false
+          } else {
+            input.value = ''
+          }
+          input.dispatchEvent(new Event('change', { bubbles: true }))
+        }
+      })
+
+      appliedFilterIds.clear()
+      countsAreApplied = true
+      filterCategories.forEach(category => updateCategorySelection(category, true))
+      renderActiveFilters()
+    })
+  }
+
   const applyButton = filterPanel.querySelector('.app-c-filter-panel__action--submit')
   if (applyButton) {
     applyButton.addEventListener('click', () => {
       applyFilters()
       setExpandedState(false)
+    })
+  }
+
+  const updateHeadingFromLocation = () => {
+    if (!resultsHeading) return
+    const locationInput = document.getElementById('search-by-location')
+    const text = locationInput ? locationInput.value.trim() : ''
+    const baseCountMatch = resultsHeading.textContent.match(/\((\d+)\)/)
+    const count = baseCountMatch ? baseCountMatch[1] : '231'
+    resultsHeading.textContent = text ? `Courses in ${text} (${count})` : `Courses (${count})`
+  }
+
+  const searchButton = document.querySelector('.app-search-submit .govuk-button')
+  if (searchButton) {
+    searchButton.addEventListener('click', e => {
+      e.preventDefault()
+      applyFilters()
+      updateHeadingFromLocation()
     })
   }
 
@@ -463,16 +510,10 @@ window.GOVUKPrototypeKit.documentReady(() => {
       input.addEventListener(eventName, handleChange)
     })
 
-    // On first load, if there are any preselected defaults, show them as applied
-    const initialIds = getAppliedFilterIds()
-    if (initialIds.length > 0) {
-      appliedFilterIds = new Set(initialIds)
-      countsAreApplied = true
-      filterCategories.forEach(category => updateCategorySelection(category, true))
-      renderActiveFilters()
-    } else {
-      filterCategories.forEach(category => updateCategorySelection(category, false))
-    }
+    // On first load: keep any default inputs checked, but do not
+    // show counts or active filter tags until Apply/Search is used
+    filterCategories.forEach(category => updateCategorySelection(category, false))
+    renderActiveFilters()
 
     document.querySelectorAll('[data-save-course-target="button"]').forEach(button => {
       const icon = button.querySelector('[data-save-course-target="icon"]')

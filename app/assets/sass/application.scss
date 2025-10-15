@@ -59,6 +59,43 @@
 /* GOV Search */
 
 /* GOV Search */
+.app-c-filter-panel__action--clear[hidden] { display: none !important; }
+
+.app-c-filter-panel__actions {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+  align-items: stretch; /* ensure equal height */
+  padding-top: 20px;
+  width: 100%;
+}
+
+.app-c-filter-panel__action--submit { justify-self: stretch; height: 100%; }
+
+.app-c-filter-panel__action--clear {
+  justify-self: stretch;
+  text-align: center;
+  white-space: nowrap;        /* avoid wrapping */
+  align-self: stretch;        /* match button height */
+  display: flex;              /* center text vertically */
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 20px;
+}
+
+@include govuk-media-query($from: tablet) {
+  .app-c-filter-panel__actions {
+    align-items: center; /* avoid tall stretching on larger viewports */
+  }
+  .app-c-filter-panel__action--submit,
+  .app-c-filter-panel__action--clear {
+    height: auto; /* use natural control height */
+    align-self: center;
+    margin-bottom: 20px;
+  }
+}
+
 .app-c-filter-section {
   border-bottom: 1px solid rgb(177, 180, 182);
   padding: 5px 0;
