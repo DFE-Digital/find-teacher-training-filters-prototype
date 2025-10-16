@@ -406,6 +406,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     applyButton.addEventListener('click', () => {
       applyFilters()
       setExpandedState(false)
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     })
   }
 
@@ -423,6 +424,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     searchButton.addEventListener('click', e => {
       e.preventDefault()
       updateHeadingFromLocation()
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     })
   }
 
@@ -449,16 +451,6 @@ window.GOVUKPrototypeKit.documentReady(() => {
     const isExpanded = filterToggle.getAttribute('aria-expanded') === 'true'
     const newState = smallViewportQuery.matches ? !isExpanded : true
     setExpandedState(newState)
-
-    if (newState) {
-      const firstFocusable = content.querySelector(
-        'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      )
-
-      if (firstFocusable) {
-        firstFocusable.focus({ preventScroll: true })
-      }
-    }
   })
 
   filterBackdrop.addEventListener('click', () => {
