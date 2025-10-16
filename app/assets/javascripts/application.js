@@ -12,6 +12,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
   const searchPanel = filterPanel ? filterPanel.querySelector('[data-search-panel]') : null
   const searchRow = document.querySelector('[data-search-top-row]')
   const resultsHeading = document.querySelector('[data-results-heading]')
+  const resultsIndicator = document.querySelector('[data-results-indicator]')
   const activeFiltersContainer = document.querySelector('[data-active-filters-container]')
   const activeFiltersList = document.querySelector('[data-active-filters]')
   const clearFiltersLink = document.querySelector('[data-clear-filters]')
@@ -427,9 +428,41 @@ window.GOVUKPrototypeKit.documentReady(() => {
     if (!resultsHeading) return
     const locationInput = document.getElementById('search-by-location')
     const text = locationInput ? locationInput.value.trim() : ''
+    const providerInput = document.getElementById('training-provider')
+    const providerText = providerInput ? providerInput.value.trim() : ''
     const baseCountMatch = resultsHeading.textContent.match(/\((\d+)\)/)
-    const count = baseCountMatch ? baseCountMatch[1] : '231'
-    resultsHeading.textContent = text ? `Courses in ${text} (${count})` : `Courses (${count})`
+    const baseCount = baseCountMatch ? baseCountMatch[1] : '10,416'
+    const getRangeForRadius = () => {
+      const selected = document.querySelector('input[name="search-radius"]:checked')
+      const id = selected ? selected.id : ''
+      switch (id) {
+        case 'radius':   // 10 miles
+          return [50, 100]
+        case 'radius-2': // 20 miles
+          return [100, 150]
+        case 'radius-3': // 50 miles
+          return [150, 200]
+        case 'radius-4': // 100 miles
+          return [200, 250]
+        default:
+          return [50, 250]
+      }
+    }
+    let count
+    if (providerText) {
+      // When training provider is filled, constrain results to 1–20
+      const min = 1
+      const max = 20
+      count = String(Math.floor(Math.random() * (max - min + 1)) + min)
+    } else if (text) {
+      const [min, max] = getRangeForRadius()
+      count = String(Math.floor(Math.random() * (max - min + 1)) + min)
+    } else {
+      count = baseCount
+    }
+    const headingText = text ? `Courses in ${text} (${count})` : `Courses (${count})`
+    if (resultsHeading) resultsHeading.textContent = headingText
+    if (resultsIndicator) resultsIndicator.textContent = `${count} results`
   }
 
   const searchButton = document.querySelector('.app-search-submit .govuk-button')
