@@ -337,6 +337,26 @@ body.app-filter-panel--locked {
   @include govuk-media-query($from: desktop) {
     display: none;
   }
+
+  &:focus {
+  background-color: #fd0;
+  outline: 3px solid rgba(0, 0, 0, 0);
+  color: #0b0c0c;
+  background-color: #fd0;
+  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  text-decoration: none;
+  }
+
+  &:hover {
+  text-decoration: underline;
+  text-decoration-thickness: max(1px, 0.0625rem);
+  text-underline-offset: 0.1578em;
+  text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+  -webkit-text-decoration-skip: none;
+  text-decoration-skip: none;
+  }
 }
 
 .app-c-filter-panel__button[aria-expanded="true"]::before {
