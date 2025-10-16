@@ -471,7 +471,16 @@ body.app-filter-panel--locked {
     cursor: pointer;
 
     &:hover {
-      background-color: #e8f2fa;
+    outline: 1px #0b0c0c solid;
+    outline-offset: 0;
+    border-color: #0b0c0c
+    }
+
+    &:focus {
+    background-color: #fd0;
+    outline: 2px #0b0c0c solid;
+    outline-offset: 0;
+    border-color: #0b0c0c
     }
 }
 
