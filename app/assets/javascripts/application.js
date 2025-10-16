@@ -190,11 +190,11 @@ window.GOVUKPrototypeKit.documentReady(() => {
   }
 
   const sortByActiveFilterLabels = {
-    'sort': 'Sort by: Distance',
+    'sort': 'Sort by: Nearest distance',
     'sort-1': 'Sort by: Course name (a to z)',
-    'sort-2': 'Sort by: Provider name (a to z)',
-    'sort-3': 'Sort by: Start date',
-    'sort-4': 'Sort by: Fee or salary'
+    'sort-2': 'Sort by: Provider (a to z)',
+    'sort-3': 'Sort by: Soonest start date',
+    'sort-4': 'Sort by: Lowest fee'
   }
 
   const furtherEducationActiveFilterLabels = {
