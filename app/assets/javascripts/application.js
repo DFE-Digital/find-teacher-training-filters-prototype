@@ -97,13 +97,26 @@ window.GOVUKPrototypeKit.documentReady(() => {
       heading.classList.toggle('app-c-filter-section__summary-heading--selected', isSelected)
     }
 
-    if (updateCount) {
-      const counter = category.querySelector('.app-c-filter-section__count')
-      if (counter) {
-        const countToShow = selectedInputs.length
-        counter.textContent = countToShow > 0 ? `${countToShow} selected` : ''
-        counter.hidden = countToShow === 0
+    // Manage the {number} selected indicator DOM
+    let counter = category.querySelector('.app-c-filter-section__count')
+    const countToShow = updateCount ? selectedInputs.length : 0
+    if (countToShow > 0) {
+      if (!counter) {
+        counter = document.createElement('span')
+        counter.className = 'app-c-filter-section__count govuk-hint'
+        const summary = category.querySelector('.app-c-filter-section__summary')
+        // Insert after the heading inside the summary
+        if (summary) {
+          summary.appendChild(counter)
+        } else if (heading && heading.parentElement) {
+          heading.parentElement.appendChild(counter)
+        }
       }
+      counter.textContent = `${countToShow} selected`
+      counter.hidden = false
+    } else if (counter) {
+      // Remove completely when not needed to avoid layout gaps
+      counter.remove()
     }
   }
 
