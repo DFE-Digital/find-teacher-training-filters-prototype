@@ -419,7 +419,6 @@ window.GOVUKPrototypeKit.documentReady(() => {
   if (searchButton) {
     searchButton.addEventListener('click', e => {
       e.preventDefault()
-      applyFilters()
       updateHeadingFromLocation()
     })
   }
