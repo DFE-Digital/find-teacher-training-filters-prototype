@@ -460,7 +460,16 @@ window.GOVUKPrototypeKit.documentReady(() => {
     } else {
       count = baseCount
     }
-    const headingText = text ? `Courses in ${text} (${count})` : `Courses (${count})`
+    let headingText
+    if (providerText && text) {
+      headingText = `Courses at ${providerText} in ${text} (${count})`
+    } else if (providerText) {
+      headingText = `Courses at ${providerText} (${count})`
+    } else if (text) {
+      headingText = `Courses in ${text} (${count})`
+    } else {
+      headingText = `Courses (${count})`
+    }
     if (resultsHeading) resultsHeading.textContent = headingText
     if (resultsIndicator) resultsIndicator.textContent = `${count} results`
   }
