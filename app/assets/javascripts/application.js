@@ -16,6 +16,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
   const activeFiltersList = document.querySelector('[data-active-filters]')
   const clearFiltersLink = document.querySelector('[data-clear-filters]')
   const clearInlineLink = document.querySelector('[data-clear-filters-inline]')
+  const actionsContainer = document.querySelector('.app-c-filter-panel__actions')
 
   if (!filterPanel || !filterToggle || !filterBackdrop || !filterSections || !searchPanel || !searchRow || !activeFiltersContainer || !activeFiltersList) {
     return
@@ -255,11 +256,13 @@ window.GOVUKPrototypeKit.documentReady(() => {
     if (appliedFilterIds.size === 0) {
       activeFiltersContainer.hidden = true
       if (clearInlineLink) clearInlineLink.hidden = true
+      if (actionsContainer) actionsContainer.classList.add('app-c-filter-panel__actions--single')
       return
     }
 
     activeFiltersContainer.hidden = false
     if (clearInlineLink) clearInlineLink.hidden = false
+    if (actionsContainer) actionsContainer.classList.remove('app-c-filter-panel__actions--single')
 
     const createTextTag = (id, labelText) => {
       const listItem = document.createElement('li')

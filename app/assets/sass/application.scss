@@ -70,6 +70,10 @@
   width: 100%;
 }
 
+.app-c-filter-panel__actions--single {
+  grid-template-columns: 1fr; /* make Apply full width when no Clear link */
+}
+
 .app-c-filter-panel__action--submit { justify-self: stretch; height: 100%; }
 
 .app-c-filter-panel__action--clear {
@@ -593,7 +597,7 @@ body.app-filter-panel--locked {
 }
 
 .app-c-filter-panel__action--submit {
-
+  font-size: 20px;
   margin-bottom: 5px;
 
   @include govuk-media-query($from: tablet) {
