@@ -18,6 +18,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
   const clearFiltersLink = document.querySelector('[data-clear-filters]')
   const clearInlineLink = document.querySelector('[data-clear-filters-inline]')
   const actionsContainer = document.querySelector('.app-c-filter-panel__actions')
+  const coursesContainer = document.querySelector('[data-courses-container]')
 
   if (!filterPanel || !filterToggle || !filterBackdrop || !filterSections || !searchPanel || !searchRow || !activeFiltersContainer || !activeFiltersList) {
     return
@@ -342,6 +343,19 @@ window.GOVUKPrototypeKit.documentReady(() => {
     filterCategories.forEach(category => updateCategorySelection(category, true))
     updateHeadingFromLocation()
     renderActiveFilters()
+
+    // If Salary filter is selected, hide courses and set count to 0
+    const salarySelected = appliedFilterIds.has('fee-2')
+    if (salarySelected) {
+      if (coursesContainer) coursesContainer.hidden = true
+      if (resultsHeading) {
+        const headingText = resultsHeading.textContent.replace(/\(([^)]*)\)/, '(0)')
+        resultsHeading.textContent = headingText
+      }
+      if (resultsIndicator) resultsIndicator.textContent = '0 results'
+    } else {
+      if (coursesContainer) coursesContainer.hidden = false
+    }
   }
 
   const removeFilter = id => {
