@@ -13,6 +13,12 @@ window.GOVUKPrototypeKit.documentReady(() => {
   const searchRow = document.querySelector('[data-search-top-row]')
   const resultsHeading = document.querySelector('[data-results-heading]')
   const resultsIndicator = document.querySelector('[data-results-indicator]')
+  const radiusSection = filterPanel ? filterPanel.querySelector('[data-radius-section]') : null
+  const INITIAL_BASE_COUNT = (() => {
+    if (!resultsHeading) return '10,416'
+    const match = resultsHeading.textContent.match(/\(([-0-9,]+)\)/)
+    return match ? match[1] : '10,416'
+  })()
   const activeFiltersContainer = document.querySelector('[data-active-filters-container]')
   const activeFiltersList = document.querySelector('[data-active-filters]')
   const clearFiltersLink = document.querySelector('[data-clear-filters]')
@@ -324,6 +330,37 @@ window.GOVUKPrototypeKit.documentReady(() => {
     })
   }
 
+  // Handle zero-results behaviour for Salary selection and restore on clear
+  const updateCoursesVisibilityFromSalary = () => {
+    const salarySelected = appliedFilterIds.has('fee-2')
+    if (salarySelected) {
+      if (coursesContainer) coursesContainer.hidden = true
+      if (resultsHeading) {
+        const headingText = resultsHeading.textContent.replace(/\(([^)]*)\)/, '(0)')
+        resultsHeading.textContent = headingText
+      }
+      if (resultsIndicator) resultsIndicator.textContent = '0 results'
+    } else {
+      if (coursesContainer) coursesContainer.hidden = false
+      // Recompute a non-zero count for prototype and update H1/indicator
+      updateHeadingFromLocation()
+      // If still showing zero, reset back to initial base count
+      if (resultsHeading) {
+        const match = resultsHeading.textContent.match(/\(([-0-9,]+)\)/)
+        const num = match ? parseInt(String(match[1]).replace(/,/g, ''), 10) : 0
+        if (!(num > 0)) {
+          const newText = resultsHeading.textContent.replace(/\(([^)]*)\)/, `(${INITIAL_BASE_COUNT})`)
+          resultsHeading.textContent = newText
+        }
+      }
+      if (resultsIndicator) {
+        const current = resultsIndicator.textContent
+        const n = parseInt(current.replace(/[^0-9]/g, ''), 10)
+        if (!(n > 0)) resultsIndicator.textContent = `${INITIAL_BASE_COUNT} results`
+      }
+    }
+  }
+
   // Defer adding provider tag until Apply is clicked
 
   const applyFilters = () => {
@@ -344,18 +381,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     updateHeadingFromLocation()
     renderActiveFilters()
 
-    // If Salary filter is selected, hide courses and set count to 0
-    const salarySelected = appliedFilterIds.has('fee-2')
-    if (salarySelected) {
-      if (coursesContainer) coursesContainer.hidden = true
-      if (resultsHeading) {
-        const headingText = resultsHeading.textContent.replace(/\(([^)]*)\)/, '(0)')
-        resultsHeading.textContent = headingText
-      }
-      if (resultsIndicator) resultsIndicator.textContent = '0 results'
-    } else {
-      if (coursesContainer) coursesContainer.hidden = false
-    }
+    updateCoursesVisibilityFromSalary()
   }
 
   const removeFilter = id => {
@@ -372,6 +398,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     }
 
     renderActiveFilters()
+    updateCoursesVisibilityFromSalary()
   }
 
   activeFiltersList.addEventListener('click', event => {
@@ -403,6 +430,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
       appliedFilterIds.clear()
       renderActiveFilters()
+      updateCoursesVisibilityFromSalary()
     })
   }
 
@@ -426,6 +454,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
       countsAreApplied = true
       filterCategories.forEach(category => updateCategorySelection(category, true))
       renderActiveFilters()
+      updateCoursesVisibilityFromSalary()
     })
   }
 
@@ -486,6 +515,11 @@ window.GOVUKPrototypeKit.documentReady(() => {
     }
     if (resultsHeading) resultsHeading.textContent = headingText
     if (resultsIndicator) resultsIndicator.textContent = `${count} results`
+
+    // Show or hide the radius section based on presence of location text
+    if (radiusSection) {
+      radiusSection.hidden = !text
+    }
   }
 
   const searchButton = document.querySelector('.app-search-submit .govuk-button')
