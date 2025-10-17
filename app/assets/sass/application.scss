@@ -124,7 +124,8 @@
     font-weight: 700;
     font-size: 1.1875rem;
     line-height: 1.31579;
-    display: block;
+    display: inline-block;
+    width: fit-content;
     grid-column: 2;
     grid-row: 1;
   }
@@ -166,16 +167,20 @@
     }
   }
 }
-.app-c-filter-section__summary:focus .app-c-filter-section__summary-heading {
-  background-color: #fd0;
-  outline: 3px solid rgba(0, 0, 0, 0);
+.app-c-filter-section__summary:focus .app-c-filter-section__summary-heading,
+.app-c-filter-section__summary:focus-within .app-c-filter-section__summary-heading {
   color: #0b0c0c;
   background-color: #fd0;
-  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
+  text-underline-offset: 0.1578em;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+  -webkit-text-decoration-skip: none;
+  text-decoration-skip: none;
 }
 
-.app-c-filter-section__summary:hover .app-c-filter-section__summary-heading {
+.app-c-filter-section__summary:hover:not(:focus):not(:focus-within) .app-c-filter-section__summary-heading {
   text-decoration: underline;
   text-decoration-thickness: max(1px, 0.0625rem);
   text-underline-offset: 0.1578em;
@@ -334,28 +339,35 @@ body.app-filter-panel--locked {
   font-size: 1.1875rem;
   line-height: 1.3157894737;
 
+  .app-c-filter-panel__button-inner {
+    display: inline-block;
+    width: fit-content;
+  }
+
   @include govuk-media-query($from: desktop) {
     display: none;
   }
 
-  &:focus {
-  background-color: #fd0;
-  outline: 3px solid rgba(0, 0, 0, 0);
-  color: #0b0c0c;
-  background-color: #fd0;
-  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
-  text-decoration: none;
+  &:focus .app-c-filter-panel__button-inner,
+  &:focus-within .app-c-filter-panel__button-inner {
+    color: #0b0c0c;
+    background-color: #fd0;
+    text-decoration: none;
   }
 
-  &:hover {
-  text-decoration: underline;
-  text-decoration-thickness: max(1px, 0.0625rem);
-  text-underline-offset: 0.1578em;
-  text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
-  -webkit-text-decoration-skip-ink: none;
-  text-decoration-skip-ink: none;
-  -webkit-text-decoration-skip: none;
-  text-decoration-skip: none;
+  &:active .app-c-filter-panel__button-inner {
+    text-decoration: none;
+  }
+
+  &:hover:not(:focus):not(:focus-within) .app-c-filter-panel__button-inner {
+    text-decoration: underline;
+    text-decoration-thickness: max(1px, 0.0625rem);
+    text-underline-offset: 0.1578em;
+    text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
+    -webkit-text-decoration-skip-ink: none;
+    text-decoration-skip-ink: none;
+    -webkit-text-decoration-skip: none;
+    text-decoration-skip: none;
   }
 }
 
