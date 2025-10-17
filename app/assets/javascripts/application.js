@@ -330,6 +330,14 @@ window.GOVUKPrototypeKit.documentReady(() => {
     })
   }
 
+  // Toggle radius section visibility based on location field value
+  const toggleRadiusVisibilityFromLocation = () => {
+    if (!radiusSection) return
+    const locationInput = document.getElementById('search-by-location')
+    const text = locationInput ? locationInput.value.trim() : ''
+    radiusSection.hidden = !text
+  }
+
   // Handle zero-results behaviour for Salary selection and restore on clear
   const updateCoursesVisibilityFromSalary = () => {
     const salarySelected = appliedFilterIds.has('fee-2')
@@ -376,6 +384,17 @@ window.GOVUKPrototypeKit.documentReady(() => {
         appliedFilterIds.add(input.id)
       }
     })
+
+    // Only add a radius tag when a location is set AND a non-default radius is chosen
+    const selectedRadius = document.querySelector('input[name="search-radius"]:checked')
+    const selectedRadiusId = selectedRadius ? selectedRadius.id : ''
+    const locationValue = (document.getElementById('search-by-location')?.value || '').trim()
+    if (!locationValue || selectedRadiusId === 'radius') {
+      appliedFilterIds.delete('radius')
+      appliedFilterIds.delete('radius-2')
+      appliedFilterIds.delete('radius-3')
+      appliedFilterIds.delete('radius-4')
+    }
 
     filterCategories.forEach(category => updateCategorySelection(category, true))
     updateHeadingFromLocation()
@@ -515,11 +534,6 @@ window.GOVUKPrototypeKit.documentReady(() => {
     }
     if (resultsHeading) resultsHeading.textContent = headingText
     if (resultsIndicator) resultsIndicator.textContent = `${count} results`
-
-    // Show or hide the radius section based on presence of location text
-    if (radiusSection) {
-      radiusSection.hidden = !text
-    }
   }
 
   const searchButton = document.querySelector('.app-search-submit .govuk-button')
@@ -527,6 +541,8 @@ window.GOVUKPrototypeKit.documentReady(() => {
     searchButton.addEventListener('click', e => {
       e.preventDefault()
       updateHeadingFromLocation()
+      // Only toggle radius visibility when Search is clicked
+      toggleRadiusVisibilityFromLocation()
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     })
   }
