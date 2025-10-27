@@ -447,9 +447,6 @@ window.GOVUKPrototypeKit.documentReady(() => {
     renderActiveFilters()
 
     updateCoursesVisibilityFromSalary()
-
-    // Clear Subject after applying filters
-    clearSubjectField()
   }
 
   const removeFilter = id => {
@@ -589,8 +586,21 @@ window.GOVUKPrototypeKit.documentReady(() => {
   if (searchButton) {
     searchButton.addEventListener('click', e => {
       e.preventDefault()
-      updateHeadingFromLocation()
-      toggleRadiusVisibilityFromLocation()
+      // Sync chosen subject into its matching checkbox so it becomes an active filter
+      buildSubjectNameToId()
+      const subjectSelect = document.getElementById('search-by-subject')
+      const chosenSubject = subjectSelect ? subjectSelect.value.trim() : ''
+      const matchedId = chosenSubject ? subjectNameToId.get(chosenSubject) : ''
+      if (matchedId) {
+        const checkbox = document.getElementById(matchedId)
+        if (checkbox && checkbox.type === 'checkbox') {
+          checkbox.checked = true
+          checkbox.dispatchEvent(new Event('change', { bubbles: true }))
+        }
+      }
+
+      // Apply to compute and display active filters
+      applyFilters()
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     })
   }
