@@ -271,6 +271,40 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
   const trainProviderInput = filterPanel.querySelector('#training-provider')
 
+  // Clear the Subject autocomplete and underlying select safely
+  const clearSubjectField = () => {
+    const subjectSelect = document.getElementById('search-by-subject')
+    if (!subjectSelect) return
+
+    // Clear native select
+    subjectSelect.value = ''
+    if (subjectSelect.options && subjectSelect.options.length > 0) {
+      subjectSelect.selectedIndex = 0
+    }
+
+    // Clear enhanced autocomplete input if present
+    const wrapper = subjectSelect.parentNode ? subjectSelect.parentNode.querySelector('.autocomplete__wrapper') : null
+    const autoInput = wrapper ? wrapper.querySelector('input') : null
+    if (autoInput) {
+      autoInput.value = ''
+      autoInput.dispatchEvent(new Event('input', { bubbles: true }))
+    }
+  }
+
+  // Build a subject name -> input id index by scanning the DOM (keeps in sync with filters)
+  let subjectNameToId = new Map()
+  const buildSubjectNameToId = () => {
+    subjectNameToId = new Map()
+    const subjectInputs = filterPanel.querySelectorAll('input[name="primary-subjects"], input[name="secondary-subjects"]')
+    subjectInputs.forEach(input => {
+      const label = filterPanel.querySelector(`label[for="${CSS.escape(input.id)}"]`)
+      const text = label ? label.textContent.trim() : ''
+      if (text) {
+        subjectNameToId.set(text, input.id)
+      }
+    })
+  }
+
   const renderActiveFilters = () => {
     activeFiltersList.innerHTML = ''
 
@@ -385,6 +419,18 @@ window.GOVUKPrototypeKit.documentReady(() => {
       }
     })
 
+    // If a subject was chosen via the top autocomplete, sync to the matching checkbox id
+    const subjectInput = document.getElementById('search-by-subject')
+    const chosenSubject = subjectInput ? subjectInput.value.trim() : ''
+    const matchedId = chosenSubject ? subjectNameToId.get(chosenSubject) : ''
+    if (matchedId) {
+      const matchedCheckbox = document.getElementById(matchedId)
+      if (matchedCheckbox && matchedCheckbox.type === 'checkbox') {
+        matchedCheckbox.checked = true
+        appliedFilterIds.add(matchedId)
+      }
+    }
+
     // Only add a radius tag when a location is set AND a non-default radius is chosen
     const selectedRadius = document.querySelector('input[name="search-radius"]:checked')
     const selectedRadiusId = selectedRadius ? selectedRadius.id : ''
@@ -401,6 +447,9 @@ window.GOVUKPrototypeKit.documentReady(() => {
     renderActiveFilters()
 
     updateCoursesVisibilityFromSalary()
+
+    // Clear Subject after applying filters
+    clearSubjectField()
   }
 
   const removeFilter = id => {
@@ -541,7 +590,6 @@ window.GOVUKPrototypeKit.documentReady(() => {
     searchButton.addEventListener('click', e => {
       e.preventDefault()
       updateHeadingFromLocation()
-      // Only toggle radius visibility when Search is clicked
       toggleRadiusVisibilityFromLocation()
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     })
@@ -627,6 +675,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
     // show counts or active filter tags until Apply/Search is used
     filterCategories.forEach(category => updateCategorySelection(category, false))
     renderActiveFilters()
+    buildSubjectNameToId()
 
     document.querySelectorAll('[data-save-course-target="button"]').forEach(button => {
       const icon = button.querySelector('[data-save-course-target="icon"]')

@@ -8,12 +8,14 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% block stylesheets %}
   {{ super() }}
-  <link href="/stylesheets/application.css" rel="stylesheet">
+  <link rel="stylesheet" href="/plugin-assets/@x-govuk/govuk-prototype-components/all.css">
+  <link href="{{ assetPath }}/stylesheets/application.css" rel="stylesheet">
 {% endblock %}
 
 {% block pageScripts %}
   {{ super() }}
-  <script src="/javascripts/application.js"></script>
+  <script src="/plugin-assets/@x-govuk/govuk-prototype-components/all.js"></script>
+  <script src="{{ assetPath }}/javascripts/application.js"></script>
 {% endblock %}
 
 {% block header %}

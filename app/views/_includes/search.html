@@ -1,9 +1,58 @@
 <h2 class="govuk-body app-filter-heading app-filter-heading--search">Find courses</h2>
 <div class="govuk-form-group app-search-field">
-    <label class="govuk-label app-filter-label" for="search-by-subject">
-        <strong>Subject</strong>
-    </label>
-    <input class="govuk-input" id="search-by-subject" name="subject-search" type="text">
+    <h1 class="govuk-label-wrapper">
+        <label class="govuk-label app-filter-label" for="search-by-subject">
+            <strong>Subject</strong>
+        </label>
+    </h1>
+    <select class="govuk-select" id="search-by-subject" name="subject-search"
+        data-module="autocomplete" data-autoselect="true" data-display-menu="overlay" data-min-length="3" data-show-all-values="false" data-show-no-options-found="true">
+        <option value="" disabled selected>Select an option</option>
+        <option value="Primary">Primary</option>
+        <option value="Primary with English">Primary with English</option>
+        <option value="Primary with geography and history">Primary with geography and history</option>
+        <option value="Primary with mathematics">Primary with mathematics</option>
+        <option value="Primary with modern languages">Primary with modern languages</option>
+        <option value="Primary with physical education">Primary with physical education</option>
+        <option value="Primary with science">Primary with science</option>
+        <option value="Ancient Greek">Ancient Greek</option>
+        <option value="Ancient Hebrew">Ancient Hebrew</option>
+        <option value="Art and design">Art and design</option>
+        <option value="Biology">Biology</option>
+        <option value="Business studies">Business studies</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Citizenship">Citizenship</option>
+        <option value="Classics">Classics</option>
+        <option value="Communication and media studies">Communication and media studies</option>
+        <option value="Computing">Computing</option>
+        <option value="Dance">Dance</option>
+        <option value="Design and technology">Design and technology</option>
+        <option value="Drama">Drama</option>
+        <option value="Economics">Economics</option>
+        <option value="English">English</option>
+        <option value="French">French</option>
+        <option value="Geography">Geography</option>
+        <option value="German">German</option>
+        <option value="Health and social care">Health and social care</option>
+        <option value="History">History</option>
+        <option value="Italian">Italian</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Latin">Latin</option>
+        <option value="Mandarin">Mandarin</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Modern languages (other)">Modern languages (other)</option>
+        <option value="Music">Music</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="Physical education">Physical education</option>
+        <option value="Physical education with an EBacc subject">Physical education with an EBacc subject</option>
+        <option value="Physics">Physics</option>
+        <option value="Psychology">Psychology</option>
+        <option value="Religious education">Religious education</option>
+        <option value="Russian">Russian</option>
+        <option value="Science">Science</option>
+        <option value="Social sciences">Social sciences</option>
+        <option value="Spanish">Spanish</option>
+    </select>
 </div>
 
 <div class="govuk-form-group app-search-field">

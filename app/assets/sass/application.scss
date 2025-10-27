@@ -650,3 +650,9 @@ body.app-filter-panel--locked {
 .app-summary-card__content {
   padding-bottom: 12px;
 }
+
+// Subject autocomplete visual tweaks
+.autocomplete__input,
+.autocomplete__menu {
+  background-color: #ffffff;
+}
