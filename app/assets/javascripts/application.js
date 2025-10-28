@@ -601,6 +601,9 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
       // Apply to compute and display active filters
       applyFilters()
+
+      // Reveal/hide the radius section based on location value when searching
+      toggleRadiusVisibilityFromLocation()
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     })
   }
