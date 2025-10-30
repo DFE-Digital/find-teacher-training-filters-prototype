@@ -320,7 +320,6 @@ body.app-filter-panel--locked {
   align-items: baseline;
   gap: 10px;
   margin-top: 15px;
-  border-bottom: 1px solid	#b1b4b6; /* V2 was not here at all */
 
   @include govuk-media-query($from: tablet) {
     display: none;
@@ -693,4 +692,9 @@ body.app-filter-panel--locked {
  font-weight: 700;
  border-left: 4px solid #f47738;
  margin-bottom: 20px;
+}
+
+.app-wider {
+  margin-left: -15px;
+  margin-right: -15px;
 }
