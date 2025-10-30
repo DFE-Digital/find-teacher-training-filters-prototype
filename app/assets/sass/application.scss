@@ -683,3 +683,11 @@ body.app-filter-panel--locked {
   font-size: 19px;
   margin-top: 15px; /* V2 was zero */
 }
+
+.app-guidance-panel {
+ background-color: #f3f2f1;
+ padding: 15px;
+ font-weight: 700;
+ border-left: 4px solid #f47738;
+ margin-bottom: 20px;
+}
