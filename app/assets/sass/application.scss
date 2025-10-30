@@ -402,7 +402,7 @@ body.app-filter-panel--locked {
 }
 
 .app-filter-heading {
-  font-size: 27px;
+  font-size: 24px;
   font-weight: 700;
   margin-bottom: 0; /* V2 was not here at all */
 
@@ -678,8 +678,26 @@ body.app-filter-panel--locked {
   padding-right: 15px;
   @include govuk-media-query($from: tablet) {
     margin: 0;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
   }
+}
 
+.app-page-title {
+    background-color: #f3f2f1;
+    padding-top: 15px;
+    padding-left: 15px;
+    margin: 0;
+   @include govuk-media-query($from: tablet) {
+      background-color: #f3f2f1;
+      padding-left: 30px;
+      padding-top: 30px;
+      padding-right: 30px;
+      margin-bottom: 0;
+
+  }
 }
 
 .app-active-filters-heading {
