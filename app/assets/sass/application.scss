@@ -689,14 +689,18 @@ body.app-filter-panel--locked {
     background-color: #f3f2f1;
     padding-top: 15px;
     padding-left: 15px;
+    padding-bottom: 5px;
     margin: 0;
     font-size: 27px;
+    line-height: 30px;
    @include govuk-media-query($from: tablet) {
       background-color: #f3f2f1;
       padding-left: 30px;
       padding-top: 30px;
       padding-right: 30px;
       margin-bottom: 0;
+      font-size: 36px;
+      line-height: 40px;
 
   }
 }
