@@ -690,6 +690,7 @@ body.app-filter-panel--locked {
     padding-top: 15px;
     padding-left: 15px;
     margin: 0;
+    font-size: 27px;
    @include govuk-media-query($from: tablet) {
       background-color: #f3f2f1;
       padding-left: 30px;
